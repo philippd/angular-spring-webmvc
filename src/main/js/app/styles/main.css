@@ -1,0 +1,15 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+
+li.person {
+  background-color: #C6E746;
+  max-width: 200px;
+  margin: 10px 0px;
+  padding: 3px 5px;
+  border: 1px dotted;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}
