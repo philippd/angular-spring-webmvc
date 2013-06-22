@@ -1,0 +1,20 @@
+// Hotfix Glyphicons-halflings include
+$iconSpritePath:          "../../images/glyphicons-halflings.png";
+$iconWhiteSpritePath:     "../../images/glyphicons-halflings-white.png";
+
+@import "compass_twitter_bootstrap";
+@import "compass_twitter_bootstrap_responsive";
+
+li.person {
+  background-color: #C6E746;
+  max-width: 200px;
+  margin: 10px 0px;
+  padding: 3px 5px;
+  border: 1px dotted;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+}

@@ -8,6 +8,9 @@ module.exports = function (grunt) {
   // load all grunt tasks
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  // load custom grunt tasks
+  grunt.loadTasks('grunt-tasks');
+
   // configurable paths
   var yeomanConfig = {
     app: 'app',
@@ -29,10 +32,10 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
-      //compass: {
-      //  files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-      //  tasks: ['compass']
-      //},
+      compass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['compass']
+      },
       livereload: {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
@@ -71,9 +74,18 @@ module.exports = function (grunt) {
         }
       }
     },
+    proxy: {
+      options: {
+        port: 7070,
+        backend: {
+          port: 8080,
+          url: 'rest'
+        }
+      }
+    },
     open: {
       server: {
-        url: 'http://localhost:<%= connect.options.port %>'
+        url: 'http://localhost:<%= proxy.options.port %>'
       }
     },
     clean: {
@@ -124,23 +136,23 @@ module.exports = function (grunt) {
         }]
       }
     },
-    // compass: {
-      // options: {
-        // sassDir: '<%= yeoman.app %>/styles',
-        // cssDir: '.tmp/styles',
-        // imagesDir: '<%= yeoman.app %>/images',
-        // javascriptsDir: '<%= yeoman.app %>/scripts',
-        // fontsDir: '<%= yeoman.app %>/styles/fonts',
-        // importPath: '<%= yeoman.app %>/components',
-        // relativeAssets: true
-      // },
-      // dist: {},
-      // server: {
-        // options: {
-          // debugInfo: true
-        // }
-      // }
-    // },
+    compass: {
+      options: {
+        sassDir: '<%= yeoman.app %>/styles',
+        cssDir: '.tmp/styles',
+        imagesDir: '<%= yeoman.app %>/images',
+        javascriptsDir: '<%= yeoman.app %>/scripts',
+        fontsDir: '<%= yeoman.app %>/styles/fonts',
+        importPath: '<%= yeoman.app %>/components',
+        relativeAssets: true
+      },
+      dist: {},
+      server: {
+        options: {
+          debugInfo: true
+        }
+      }
+    },
     concat: {
       dist: {
         files: {
@@ -265,17 +277,18 @@ module.exports = function (grunt) {
   grunt.registerTask('server', [
     'clean:server',
     'coffee:dist',
-    // 'compass:server',
+    'compass:server',
     'livereload-start',
     'connect:livereload',
     'open',
+    'proxy',
     'watch'
   ]);
 
   grunt.registerTask('test', [
     'clean:server',
     'coffee',
-    // 'compass',
+    'compass',
     'connect:test',
     'karma'
   ]);
@@ -285,12 +298,12 @@ module.exports = function (grunt) {
     'jshint',
     'test',
     'coffee',
-    // 'compass:dist',
+    'compass:dist',
     'useminPrepare',
+    'concat',
     'imagemin',
     'cssmin',
     'htmlmin',
-    'concat',
     'copy',
     'cdnify',
     'ngmin',
