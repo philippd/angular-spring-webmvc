@@ -1,10 +1,11 @@
-<div class="hero-unit">
-  <h1>Welcome! <i class="icon-search"></i></h1>
-  <p>There are the following persons in the database:</p>
-  <ul>
-      <li class="person" ng-repeat="person in persons" ng-click="delete(person)">
-          {{person.firstName}} {{person.middleName}} {{person.lastName}} ({{person.age}})
-      </li>
-  </ul>
-
+<div>
+  <section>
+    <h1>Welcome!</h1>
+    <p>There are the following persons in the database:</p>
+    <ul>
+        <li class="person" ng-repeat="person in persons" ng-click="delete(person)">
+            {{person.firstName}} {{person.middleName}} {{person.lastName}} ({{person.age}})
+        </li>
+    </ul>
+  </section>
 </div>

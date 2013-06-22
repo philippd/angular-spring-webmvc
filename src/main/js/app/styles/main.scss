@@ -2,19 +2,73 @@
 $iconSpritePath:          "../../images/glyphicons-halflings.png";
 $iconWhiteSpritePath:     "../../images/glyphicons-halflings-white.png";
 
+$sansFontFamily: 'Open Sans',sans-serif;
+
+// Inverted navbar
+$navbarInverseBackground:                rgb(237, 71, 50);
+$navbarInverseBackgroundHighlight:       $navbarInverseBackground;
+$navbarInverseBorder:                    $navbarInverseBackground;
+$navbarInverseText:                      #fff;
+$navbarInverseLinkColor:                 #fff;
+$navbarInverseLinkColorHover:            #fff;
+$navbarInverseLinkColorActive:           $navbarInverseLinkColorHover;
+$navbarInverseLinkBackgroundHover:       transparent;
+$navbarInverseLinkBackgroundActive:      #f4907f;
+
 @import "compass_twitter_bootstrap";
 @import "compass_twitter_bootstrap_responsive";
 
-li.person {
-  background-color: #c3636c;
-  max-width: 200px;
-  margin: 10px 0px;
-  padding: 3px 5px;
-  border: 1px dotted;
-  border-radius: 10px;
-  cursor: pointer;
+body {
+  padding-top: 60px;
+  background-color: #f8f8f8 !important;
 }
 
-ul {
-  list-style: none;
+.navbar {
+  font-size: 13px;
 }
+
+.navbar .brand {
+  padding-left: 0;
+  margin-left: 20px;
+  float: right;
+  font-size: 16px;
+}
+
+.nav {
+  text-transform: uppercase;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+section {
+  box-shadow: 1px 1px 10px #ccc;
+  border-width: 1px 1px 1px 6px;
+  padding: 30px 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: $baseLineHeight * 1.5;
+  background-color: #fff;
+  border-radius: 10px;
+  h1 {
+    margin-bottom: 0;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  li {
+    line-height: $baseLineHeight * 1.5;
+  }
+}
+
+.view-enter {
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+
+.view-enter {
+  opacity:0;
+}
+.view-enter.view-enter-active {
+  opacity:1;
+}
+

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('angularDemoApp', [])
+angular.module('angularDemoApp', ['$strap'])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
+      .when('/home', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
@@ -12,6 +12,6 @@ angular.module('angularDemoApp', [])
         controller: 'MainCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/home'
       });
   });
