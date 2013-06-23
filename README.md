@@ -59,7 +59,7 @@ mvn jetty:run-war
 ###Develop
 For development you may want to run the server and client parts independenly. This allows you to deploy the WAR in your favorite IDE in a local servlet container (maybe even with JRebel!) and run the grunt 'server' task with live-reload at the same time.
 
-- make sure you run your servlet container on port 8080 and set the context path to '/' (The grunt task 'server' will forward all requests to /rest to this port, you can change this in src/main/js/Gruntfile.js) 
+- make sure you run your servlet container on port 8080 and set the context path to '/' (The grunt task 'server' will forward all requests to http://localhost/rest to this port, you can change this in [Gruntfile.js](https://github.com/philippd/angular-spring-webmvc/blob/master/src/main/js/Gruntfile.js)) 
 - deploy the war and start the server
 - in src/main/js run
 ```bash 
