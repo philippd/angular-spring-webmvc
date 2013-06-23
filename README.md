@@ -2,7 +2,7 @@ angular-spring-webmvc
 =====================
 
 ###Prepare
-Requires installed java, maven, node and ruby (required for sass/compass)
+Requires installed java 7, maven 3, node and ruby (required for sass/compass)
 
 - install compass: 
 
