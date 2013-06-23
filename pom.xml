@@ -156,14 +156,51 @@
         </configuration>
       </plugin>
       <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.3</version>
+          <configuration>
+          <webResources>
+            <resource>
+              <directory>src/main/js/dist</directory>
+              <!--targetPath>client</targetPath-->
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>chmod-build-client-script</id>
+            <phase>initialize</phase>
+            <goals>
+                <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>chmod</executable>
+              <arguments>
+                <argument>+x</argument>
+                <argument>build-client.sh</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>run-build-client-script</id>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>build-client.sh</executable>
+            </configuration>
+          </execution>
+        </executions>
+        </plugin>
+      <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <configuration>
-          <scanIntervalSeconds>10</scanIntervalSeconds>
-          <webApp>
-            <contextPath>/</contextPath>
-          </webApp>
-        </configuration>
       </plugin>
     </plugins>
   </build>
