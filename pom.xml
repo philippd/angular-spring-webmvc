@@ -144,6 +144,11 @@
           <artifactId>jetty-maven-plugin</artifactId>
           <version>9.0.3.v20130506</version>
         </plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+							<artifactId>exec-maven-plugin</artifactId>
+							<version>1.2.1</version>
+				</plugin>
       </plugins>
     </pluginManagement>
 
@@ -162,7 +167,6 @@
           <webResources>
             <resource>
               <directory>src/main/js/dist</directory>
-              <!--targetPath>client</targetPath-->
             </resource>
           </webResources>
         </configuration>
@@ -170,30 +174,15 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>1.2.1</version>
         <executions>
           <execution>
-            <id>chmod-build-client-script</id>
-            <phase>initialize</phase>
-            <goals>
-                <goal>exec</goal>
-            </goals>
-            <configuration>
-              <executable>chmod</executable>
-              <arguments>
-                <argument>+x</argument>
-                <argument>build-client.sh</argument>
-              </arguments>
-            </configuration>
-          </execution>
-          <execution>
-            <id>run-build-client-script</id>
+            <id>run-client-build-script</id>
             <phase>generate-resources</phase>
             <goals>
               <goal>exec</goal>
             </goals>
             <configuration>
-              <executable>build-client.sh</executable>
+              <executable>build-client${script.extension}</executable>
             </configuration>
           </execution>
         </executions>
@@ -204,5 +193,54 @@
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+    <profile>
+			<id>win</id>
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+			<properties>
+				<script.extension>.bat</script.extension>
+			</properties>
+    </profile>
+    <profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<script.extension>.sh</script.extension>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>chmod-client-build-script</id>
+								<phase>initialize</phase>
+								<goals>
+										<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>chmod</executable>
+									<arguments>
+										<argument>+x</argument>
+										<argument>build-client.sh</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+						</plugin>
+					</plugins>
+			</build>
+    </profile>
+  </profiles>
 
 </project>
