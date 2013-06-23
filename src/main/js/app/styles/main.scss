@@ -67,8 +67,10 @@ section {
 
 .view-enter {
   opacity:0;
+  margin-top:200px;
 }
 .view-enter.view-enter-active {
+  margin-top:0px;
   opacity:1;
 }
 
