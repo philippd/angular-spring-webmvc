@@ -62,6 +62,7 @@ For development you may want to run the server and client parts independenly. Th
 - make sure you run your servlet container on port 8080 and set the context path to '/' (The grunt task 'server' will forward all requests to http://localhost/rest to this port, you can change this in [Gruntfile.js](https://github.com/philippd/angular-spring-webmvc/blob/master/src/main/js/Gruntfile.js)) 
 - deploy the war and start the server
 - in src/main/js run
+
 ```bash 
 grunt server
 ```
