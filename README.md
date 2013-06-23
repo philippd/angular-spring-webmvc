@@ -27,6 +27,15 @@ npm install -g grunt-cli bower yo
 - add an environment variable CHROME_BIN pointing to chrome.exe (needed for karma)
 - make sure the bin folder of your rubygems repo is in your PATH (more information [here](http://docs.rubygems.org/read/chapter/3))
 
+
+###Run
+To build and deploy the application locally in a jetty server, run:
+
+```bash 
+mvn jetty:run-war
+```
+(Note: the goal jetty:run will only start the backend and *not* serve the client application)
+
 ### Build
 In the root directory: 
 
@@ -46,14 +55,6 @@ After you have done this once and the npm packages and bower dependencies are in
 ```bash 
 grunt
 ```
-
-###Run
-To build and deploy the application locally in a jetty server, run:
-
-```bash 
-mvn jetty:run-war
-```
-(Note: jetty:run will only start the backend and *not* serve the client application)
 
 
 ###Develop
